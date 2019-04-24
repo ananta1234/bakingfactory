@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title"><%= Price History</span>
+    <% if @previous_prices.empty? %>
+      <p>This item has no price history</p>
+    <% else %>
+      <table class="striped highlight">
+        <thead>
+          <th>Price</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+        </thead>
+        <% for item_price in @previous_prices %>
+          <tr>
+            <td><%= number_to_currency item_price.price %></td>
+            <td><%= item_price.start_date.strftime("%m/%d/%y")%></td>
+            <td><%= item_price.end_date.strftime("%m/%d/%y")%></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+</div>

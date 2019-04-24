@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   authorize_resource
 
   def index
-    @users = User.all.paginate(page: params[:page]).per_page(15)
+    @users = User.all.alphabetical.paginate(page: params[:page]).per_page(15)
   end
 
   def new
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.role = "admin" if current_user.role?(:assistant)
+    @user.role = "admin" if current_user.role?(:admin)
     if @user.save
       flash[:notice] = "Successfully added #{@user.username} as a user."
     redirect_to users_url

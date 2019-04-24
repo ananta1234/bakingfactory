@@ -15,4 +15,9 @@ class ApplicationController < ActionController::Base
   def check_login
     redirect_to login_url, alert: "You need to log in to view this page." if current_user.nil?
   end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "Sorry, it seems your account isn't authorized to access this information! Please see an admin if this is a mistake."
+    redirect_to home_path
+  end
 end

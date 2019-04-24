@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :addresses
   resources :customers
   resources :orders
+  resources :items
 
   # Semi-static page routes
   get 'home' => 'home#home', as: :home

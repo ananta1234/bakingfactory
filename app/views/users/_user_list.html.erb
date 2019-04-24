@@ -1,0 +1,33 @@
+<% if @users.empty? %>
+  <h4>There are no users currently in the system.</h4>
+<% else %>
+  <h4>Users</h4>
+
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="225">Username</th>
+        <th width="125">Role</th>
+        <th width="200">Active</th>
+        <th width="200">Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= link_to user.username, user_path(user) %></td>
+          <td><%= user.role %></td>
+          <td><%= user.active ? "Yes" : "No"%></td>
+	        <td>
+	          <%= link_to(edit_user_path(user), class: 'button tiny radius warning') do %>
+	            &nbsp;Edit&nbsp;
+	          <% end %>
+	        </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% end %>
+
+<p>&nbsp;</p>

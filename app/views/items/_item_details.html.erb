@@ -1,0 +1,21 @@
+<h3><%= @item.name %></h3>
+
+<p>
+  <b>Price</b>: <%= number_to_currency item.current_price %>
+</p>
+
+<p>
+  <b>Units Per Item</b>: <%= item.units_per_item %>
+</p>
+
+<p>
+  <b>Weight</b>: <%= item.weight %>
+</p>
+
+<p>
+  <b>Active</b>: <%= @item.active ? 'Yes' : 'No' %>
+</p>
+
+<p>
+  <em>An item at the Baking Factory since <%= @item.created_at.year %>.</em>
+</p>

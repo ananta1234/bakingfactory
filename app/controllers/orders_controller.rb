@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :destroy]
   before_action :check_login
-
+  authorize_resource
+  
   def index
     @all_orders = Order.chronological.paginate(:page => params[:page]).per_page(10)
   end

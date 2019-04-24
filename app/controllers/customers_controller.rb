@@ -2,7 +2,9 @@ class CustomersController < ApplicationController
   include ActionView::Helpers::NumberHelper
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
   before_action :check_login
-  
+
+  authorize_resource
+
   def index
     @active_customers = Customer.active.alphabetical.paginate(:page => params[:page]).per_page(10)
     @inactive_customers = Customer.inactive.alphabetical.paginate(:page => params[:page]).per_page(10)
@@ -13,6 +15,7 @@ class CustomersController < ApplicationController
   end
 
   def new
+    # authorize! :new, @customer
     @customer = Customer.new
   end
 
@@ -22,6 +25,7 @@ class CustomersController < ApplicationController
   end
 
   def create
+    # authorize! :new, @customer
     @customer = Customer.new(customer_params)
     if @customer.save
       redirect_to @customer, notice: "#{@customer.proper_name} was added to the system."
@@ -31,6 +35,7 @@ class CustomersController < ApplicationController
   end
 
   def update
+    # authorize! :update, @customer
     if @customer.update(customer_params)
       redirect_to @customer, notice: "#{@customer.proper_name} was revised in the system."
     else

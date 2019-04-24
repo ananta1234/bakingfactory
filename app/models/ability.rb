@@ -71,6 +71,7 @@ class Ability
     	can :index, Item
     	can :index, Order
     	can :show, Address
+        can :index, Address
     	can :show, Order
 
     else

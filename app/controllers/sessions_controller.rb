@@ -17,8 +17,4 @@
       session[:user_id] = nil
       redirect_to home_path, notice: "Logged out!"
     end
-
-    def self.authenticate(username,password)
-      find_by_username(username).try(:authenticate, password)
-    end
   end
