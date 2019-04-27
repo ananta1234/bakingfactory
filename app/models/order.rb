@@ -28,6 +28,10 @@ class Order < ApplicationRecord
 
   end
 
+  def self.shipped
+    joins(:order_items).where.not("order_items.shipped_on IS NULL").distinct
+  end
+
   # Other methods
   def unshipped_items
     self.order_items.unshipped

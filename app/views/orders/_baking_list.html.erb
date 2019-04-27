@@ -1,0 +1,93 @@
+
+  <h4>Baking List</h4>
+
+    <div id="tabbed">
+      <tabs>
+
+        <tab name="breads" v-bind:selected="true">
+
+        	<% if @bread_baking_list.empty? %>
+        		<p><em>There are no breads to bake at this time.</em></p>
+
+        	<% else %>
+        	
+			  <table class="table table-striped">
+			    <thead>
+			      <tr>
+			        <th width="100">Name</th>
+			        <th width="100">Quantity</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <% @bread_baking_list.keys.each do |item| %>
+			        <tr>
+			          <td><%= item %></td>
+			          <td><%= @bread_baking_list[item] %></td>
+			        </tr>
+			      <% end %>
+			    </tbody>
+			  </table>
+
+			<% end %>
+
+        </tab>
+
+        <tab name="muffins">
+
+        	<% if @muffin_baking_list.empty? %>
+        		  <p><em>There are no muffins to bake at this time.</em></p>
+
+        	<% else %>
+
+				  <table class="table table-striped">
+				    <thead>
+				      <tr>
+				        <th width="100">Name</th>
+				        <th width="100">Quantity</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				      <% @muffin_baking_list.keys.each do |item| %>
+				        <tr>
+				          <td><%= item %></td>
+				          <td><%= @muffin_baking_list[item] %></td>
+				        </tr>
+				      <% end %>
+				    </tbody>
+				  </table>
+			<% end %>
+
+		</tab>
+
+	      <tab name="pastries">
+
+        	<% if @pastry_baking_list.empty? %>
+        		  <p><em>There are no pastries to bake at this time.</em></p>
+
+        	<% else %>
+
+			   <table class="table table-striped">
+			    <thead>
+			      <tr>
+			        <th width="100">Name</th>
+			        <th width="100">Quantity</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <% @pastry_baking_list.keys.each do |item| %>
+			        <tr>
+			          <td><%= item %></td>
+			          <td><%= @pastry_baking_list[item] %></td>
+			        </tr>
+			      <% end %>
+			    </tbody>
+			  </table>
+			<% end %>
+
+	      </tab>
+
+	  </tabs>
+
+
+    </div>
+

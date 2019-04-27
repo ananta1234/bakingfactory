@@ -1,10 +1,19 @@
 class OrdersController < ApplicationController
+
+  include AppHelpers::Baking
+  include AppHelpers::Shipping
+
   before_action :set_order, only: [:show, :destroy]
   before_action :check_login
   authorize_resource
   
   def index
     @all_orders = Order.chronological.paginate(:page => params[:page]).per_page(10)
+    @bread_baking_list = create_baking_list_for("bread")
+    @muffin_baking_list = create_baking_list_for("muffin")
+    @pastry_baking_list = create_baking_list_for("pastries")
+    @unshipped_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(10)
+    @shipped_orders = Order.shipped.chronological.paginate(:page => params[:page]).per_page(10)
   end
 
   def show
