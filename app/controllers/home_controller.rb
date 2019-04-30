@@ -15,4 +15,10 @@ class HomeController < ApplicationController
   def contact
   end
 
+  def search
+    @query = params[:query]
+    @items = Item.search(@query)
+    @total_hits = @items.size
+  end
+
 end

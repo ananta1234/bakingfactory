@@ -1,0 +1,40 @@
+<h4>Cart</h4>
+
+        	<% if @cart_item_list.empty? %>
+        		<p><em>There is nothing in your cart at this time.</em></p>
+
+        	<% else %>
+        	
+			  <table class="table table-striped">
+			    <thead>
+			      <tr>
+			        <th width="100">Name</th>
+			        <th width="100">Price</th>
+			        <th width="100">Quantity</th>
+			        <th width="100">Options</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <% @cart_item_list.each do |order_item| %>
+			        <tr>
+			          <td><%= order_item.item.name %></td>
+			          <td><%= order_item.item.current_price %></td>
+			          <td><%= order_item.quantity %></td>
+			          <td><%= link_to "Remove from Cart", remove_from_cart_path(order_item.item.id)%></td>
+			        </tr>
+			      <% end %>
+			    </tbody>
+			  </table>
+
+
+
+			  <p>Total Item Cost: <%=@cost%></p>
+
+
+				<%= link_to "Clear Cart", clear_the_cart_path, class: 'waves-effect waves-light btn' %> 
+
+				<p><strong>
+				<%= link_to "Checkout", checkout_path, class: 'waves-effect waves-light btn' %> 
+				</strong></p>
+
+			<% end %>

@@ -1,7 +1,8 @@
 <% if @active_items.empty? %>
   <h4>No items at this time.</h4>
 <% else %>
-  <h4>Items</h4>
+<br>
+  <%= render :partial => "partials/title_with_search", locals: {title: "Items"} %>
 
     <div id="tabbed">
       <tabs>
@@ -16,6 +17,7 @@
                   <th width="200">Description</th>
                   <th width="100">Weight</th>
                   <th width="100">Active</th>
+                  <th width="100">Options</th>
                 </tr>
               </thead>
               <tbody>
@@ -26,6 +28,7 @@
                     <td><%= item.description %></td>
                     <td><%= item.weight%></td>
                     <td><%= item.active ? "Yes" : "No"%></td>
+                    <td><%= link_to "Add to Cart", add_to_cart_path(item.id)%></td>
                   </tr>
                 <% end %>
               </tbody>
@@ -43,6 +46,7 @@
                   <th width="200">Description</th>
                   <th width="100">Units Per Item</th>
                   <th width="100">Weight</th>
+                  <th width="100">Options</th>
                 </tr>
               </thead>
               <tbody>
@@ -52,6 +56,7 @@
                     <td><%= item.description %></td>
                     <td><%= item.units_per_item%></td>
                     <td><%= item.weight%></td>
+                    <td><%= link_to "Add to Cart", add_to_cart_path(item.id)%></td>
                   </tr>
                 <% end %>
               </tbody>
@@ -70,6 +75,7 @@
                   <th width="200">Description</th>
                   <th width="100">Units Per Item</th>
                   <th width="100">Weight</th>
+                  <th width="100">Options</th>
                 </tr>
               </thead>
               <tbody>
@@ -79,6 +85,7 @@
                     <td><%= item.description %></td>
                     <td><%= item.units_per_item%></td>
                     <td><%= item.weight%></td>
+                    <td><%= link_to "Add to Cart", add_to_cart_path(item.id)%></td>
                   </tr>
                 <% end %>
               </tbody>

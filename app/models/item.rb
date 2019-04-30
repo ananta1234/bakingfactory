@@ -8,6 +8,8 @@ class Item < ApplicationRecord
   # List of allowable categories
   CATEGORIES = [['Bread','bread'],['Muffins','muffins'],['Pastries','pastries']]
 
+  mount_uploader :photo, PhotoUploader
+  
   # Relationships
   has_many :order_items
   has_many :item_prices
@@ -18,6 +20,7 @@ class Item < ApplicationRecord
   scope :active,       -> { where(active: true) }
   scope :inactive,     -> { where(active: false) }
   scope :for_category, ->(category) { where(category: category) }
+  scope :search, ->(term) { where('name LIKE ?', "#{term}%") }
   
   # Validations
   validates :name, presence: true, uniqueness: { case_sensitive: false }

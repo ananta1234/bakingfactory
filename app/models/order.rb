@@ -91,6 +91,7 @@ class Order < ApplicationRecord
 
   def generate_payment_receipt
     self.payment_receipt = Base64.encode64("order: #{self.id}; amount_paid: #{self.grand_total}; received: #{self.date}; card: #{self.credit_card_type} ****#{self.credit_card_number[-4..-1]}; billing zip: #{self.customer.billing_address.zip}")
+    #self.payment_receipt = Base64.encode64("order: #{self.id}; amount_paid: #{self.grand_total}; received: #{self.date}; billing zip: #{self.customer.billing_address.zip}")
   end
 
   def credit_card
