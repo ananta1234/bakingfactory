@@ -1,0 +1,17 @@
+<h3>Addresses</h3>
+
+<div id="tabbed">
+
+
+  <tabs>
+
+    <tab name="active" v-bind:selected="true">
+      <%= render :partial => "active_addresses" %>
+    </tab>
+
+    <tab name="inactive">
+      <%= render :partial => "inactive_addresses" %>
+    </tab>
+
+  </tabs>
+</div>

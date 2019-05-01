@@ -1,0 +1,17 @@
+<%= render :partial => "partials/title_with_search", locals: {title: "Customers"} %>
+
+<div id="tabbed">
+
+
+  <tabs>
+
+    <tab name="active" v-bind:selected="true">
+      <%= render :partial => "active_customers" %>
+    </tab>
+
+    <tab name="inactive">
+      <%= render :partial => "inactive_customers" %>
+    </tab>
+
+  </tabs>
+</div>

@@ -1,10 +1,35 @@
+
+<% if logged_in? && ( current_user.role?(:admin)) %>
+
 <div class="row">
-  <div class="small-7 columns">
-    <%= render :partial => "order_details" %>
+  <div class="col s8">
+    <!-- primary partial gets displayed here in main div -->
+    <%= render partial: "order_details" %>
+    <%= render partial: "partials/object_options", locals: {model_name: "order", object: @order}  %>
+
   </div>
-  <div class="small-5 columns">
+  <div class="col s4">
+    <!-- render the sidebar, if it exists -->
     <%= render partial: "partials/previous_orders", locals: {previous_orders: @previous_orders}  unless @previous_orders.empty?%>
   </div>
+
 </div>
 
-<%= render partial: "partials/object_options", locals: {model_name: "order", object: @order}  %>
+<% else %>
+
+<div class="row">
+  <div class="col s8">
+    <!-- primary partial gets displayed here in main div -->
+    <%= render partial: "order_details" %>
+    <%= render partial: "partials/cust_object_options", locals: {model_name: "order", object: @order}  %>
+
+  </div>
+  <div class="col s4">
+    <!-- render the sidebar, if it exists -->
+    <%= render partial: "partials/previous_orders", locals: {previous_orders: @previous_orders}  unless @previous_orders.empty?%>
+  </div>
+
+</div>
+<% end %>
+
+

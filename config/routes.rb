@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   resources :orders
   resources :items
 
+  get 'items/:id/new_price' => 'items#new_price', :as => :new_price
+  post 'items/:id/create_price' => 'items#create_price', :as => :create_price
+
+
   # Semi-static page routes
   get 'home' => 'home#home', as: :home
   get 'about' => 'home#about', as: :about

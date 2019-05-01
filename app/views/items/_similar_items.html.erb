@@ -1,0 +1,18 @@
+<br>
+<h5>Similar Items</h5>
+    <% if @similar_items.empty? %>
+      This item has no similar items.
+    <% else %>
+      <table class="striped highlight">
+        <thead>
+          <th>Name</th>
+          <th>Options</th>
+        </thead>
+        <% for item in @similar_items %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= link_to "Add to Cart", add_to_cart_path(item.id) %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>

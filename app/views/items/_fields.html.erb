@@ -1,0 +1,7 @@
+    <%= f.input :name, input_html: {class: "avg"}, label_html: {class: "active"} %>
+    <%= f.file_field :photo, input_html: {class: "avg"}, label_html: {class: "active"} %>
+    <%= f.input :description, input_html: {class: "avg"}, label_html: {class: "active"} %>
+    <%= f.input :category, collection: Item::CATEGORIES, include_blank: true, input_html: {class: "avg"}, label_html: {class: "active"} %>
+    <%= f.input :units_per_item, input_html: {class: "avg"}, label_html: {class: "active"} %>
+    <%= f.input :weight, input_html: {class: "avg"}, label_html: {class: "active"}%>
+    <%= f.input :active %>

@@ -8,12 +8,19 @@ class OrdersController < ApplicationController
   authorize_resource
   
   def index
-    @all_orders = Order.chronological.paginate(:page => params[:page]).per_page(10)
-    @bread_baking_list = create_baking_list_for("bread")
-    @muffin_baking_list = create_baking_list_for("muffin")
-    @pastry_baking_list = create_baking_list_for("pastries")
-    @unshipped_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(10)
-    @shipped_orders = Order.shipped.chronological.paginate(:page => params[:page]).per_page(10)
+    if logged_in? && ( current_user.role?(:admin))
+      @all_orders = Order.chronological.paginate(:page => params[:page]).per_page(10)
+    elsif logged_in? && ( current_user.role?(:baker))
+      @bread_baking_list = create_baking_list_for("bread")
+      @muffin_baking_list = create_baking_list_for("muffin")
+      @pastry_baking_list = create_baking_list_for("pastries")
+    elsif logged_in? && ( current_user.role?(:shipper))
+      @unshipped_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(10)
+      @shipped_orders = Order.shipped.chronological.paginate(:page => params[:page]).per_page(10)
+    else
+      @current_customer = current_user.customer
+      @customer_orders = @current_customer.orders
+    end
   end
 
   def show

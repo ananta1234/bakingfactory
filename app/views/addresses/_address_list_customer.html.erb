@@ -1,11 +1,12 @@
-<% if addresses.empty? %>
+<h3>Your Addresses</h3>
+
+<% if @customer_addresses.empty? %>
   <p><em>There are no <%= state %> addresses at this time.</em></p>
 <% else %>
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th width="225">Customer</th>
       <th width="225">Recipient</th>
       <th width="350">Address</th>
       <th width="75">Billing?</th>
@@ -13,9 +14,8 @@
     </tr>
   </thead>
   <tbody>
-    <% addresses.each do |address| %>
+    <% @customer_addresses.each do |address| %>
       <tr>
-        <td><%= link_to address.customer.proper_name, customer_path(address.customer) %></td>
         <td><%= address.recipient %></td>
         <td>
           <%= render :partial => "partials/address_info", locals: {address: address} %>
@@ -30,6 +30,5 @@
     <% end %>
   </tbody>
 </table>
-<%= will_paginate addresses, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
 <% end %>
 <p>&nbsp;</p>

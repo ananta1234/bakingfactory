@@ -1,14 +1,14 @@
 <nav id="nav">
   <div class="container">
     <ul class="left hide-on-med-and-down">
-      <li><%= link_to 'Customers', customers_path %></li>
+      <li><%= link_to 'Home', home_path %></li>
       <li><%= link_to 'Addresses', addresses_path %></li>
       <li><%= link_to 'Orders', orders_path %></li>
       <li><%= link_to 'Items', items_path %></li>
-      <li><%= link_to 'Users', users_path %></li>
-      <li><%= link_to 'Cart', show_cart_path %></li>
+      <li><%= link_to 'My Account', customer_path(current_user.customer) %></li>
     </ul>
     <ul class="right">
+      <li><%= link_to 'Cart', show_cart_path %></li>
       <li><%= link_to 'Logout', logout_path %></li>
     </ul>
   </div>

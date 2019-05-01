@@ -1,12 +1,38 @@
 <h5>Search result for term <em>'<%= @query %>'</em> resulted in <%= pluralize(@total_hits, 'hit') %></h5>
 <p class="supertiny">&nbsp;</p>
 
-<% unless @items.empty? %>
-  <p><em><strong>Items matching term '<%= @query %>'</strong></em></p>
-  <ul>
-    <% for item in @items do %>
-      <li><%= link_to item.name, item_path(item) %></li>
-    <% end %>
-  </ul>
-  <p class="smtext">&nbsp;</p>
+<% if logged_in? && ( current_user.role?(:admin)) %>
+
+		<% unless @items.empty? %>
+		  <p><em><strong>Items matching term '<%= @query %>'</strong></em></p>
+		  <ul>
+		    <% for item in @items do %>
+		      <li><%= link_to item.name, item_path(item) %></li>
+		    <% end %>
+		  </ul>
+		  <p class="smtext">&nbsp;</p>
+		<% end %>
+
+		<% unless @customers.empty? %>
+		  <p><em><strong>Customers matching term '<%= @query %>'</strong></em></p>
+		  <ul>
+		    <% for customer in @customers do %>
+		      <li><%= link_to customer.name, customer_path(customer) %></li>
+		    <% end %>
+		  </ul>
+		  <p class="smtext">&nbsp;</p>
+		<% end %>
+
+<% else %>
+
+		<% unless @items.empty? %>
+		  <p><em><strong>Items matching term '<%= @query %>'</strong></em></p>
+		  <ul>
+		    <% for item in @items do %>
+		      <li><%= link_to item.name, item_path(item) %></li>
+		    <% end %>
+		  </ul>
+		  <p class="smtext">&nbsp;</p>
+		<% end %>
+
 <% end %>

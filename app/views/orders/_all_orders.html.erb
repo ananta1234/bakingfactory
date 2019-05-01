@@ -6,6 +6,10 @@
 
       <%= render :partial => "shipping_list" %>
 
+<% elsif logged_in? && ( current_user.role?(:customer)) %>
+
+      <%= render :partial => "customer_order_list" %>
+
 <% else %>
 
 	<% if @all_orders.empty? %>

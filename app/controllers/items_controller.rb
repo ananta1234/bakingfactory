@@ -1,8 +1,8 @@
   class ItemsController < ApplicationController
   before_action :check_login, except: [:index, :show]
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :create_price]
 
-  before_action :check_login, only: [:new, :edit, :create, :update, :destroy]
+  # before_action :check_login, only: [:new, :edit, :create, :update, :destroy]
 
   authorize_resource
   
@@ -27,6 +27,21 @@
 
   def new
     @item = Item.new
+  end
+
+  def new_price
+    @item_price = ItemPrice.new
+  end
+
+  def create_price
+    @item_price = ItemPrice.new(item_price_params)
+    @item_price.item_id = params[:id]
+
+    if @item_price.save
+      redirect_to @item, notice: "Item price was updated in the system."
+    else
+      render action: 'new_price'
+    end
   end
 
   def edit
@@ -60,7 +75,11 @@
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :picture, :category, :units_per_item, :weight, :active)
+    params.require(:item).permit(:name, :description, :photo, :category, :units_per_item, :weight, :active)
+  end
+
+  def item_price_params
+    params.require(:item_price).permit(:price)
   end
 
 end

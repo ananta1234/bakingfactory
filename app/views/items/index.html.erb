@@ -1,4 +1,22 @@
+<% if logged_in? && ( current_user.role?(:admin)) %>
+
 <%= render partial: "partials/index_structure", locals: {model_name: "item", 
-                                                         primary: "item_list", 
+                                                         primary: "item_list_admin", 
                                                          secondary: nil,
                                                          sidebar: nil} %>
+<% else %>
+
+
+
+<div class="row">
+  <div class="small-8 columns">
+    <!-- primary partial gets displayed here in main div -->
+    <%= render partial: "item_list" %>
+    
+  </div>
+  <div class="small-4 columns">
+    <!-- render the sidebar, if it exists -->
+  </div>
+</div>
+
+<% end %>

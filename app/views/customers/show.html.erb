@@ -1,11 +1,13 @@
 <div class="row">
-  <div class="small-7 columns">
+  <div class="col s8">
+    <!-- primary partial gets displayed here in main div -->
     <%= render partial: "customer_details" %>
+    <%= render partial: "partials/object_options", locals: {model_name: "customer", object: @customer}  %>
+
   </div>
-  <div class="small-5 columns">
+  <div class="col s4">
+    <!-- render the sidebar, if it exists -->
     <%= render partial: "partials/previous_orders", locals: {previous_orders: @previous_orders}  unless @previous_orders.empty?%>
   </div>
-</div>
 
-<!-- Add buttons to list all, edit project or destroy object -->
-<%= render partial: "partials/object_options", locals: {model_name: "customer", object: @customer}  %>
+</div>

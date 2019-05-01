@@ -1,4 +1,11 @@
-<%= render partial: "partials/index_structure", locals: {model_name: "order", 
-                                                         primary: "all_orders", 
-                                                         secondary: nil,
-                                                         sidebar: nil} %>
+<div class="row">
+  <div class="small-8 columns">
+    <!-- primary partial gets displayed here in main div -->
+    <%= render partial: "all_orders" %>
+    
+  </div>
+  <div class="small-4 columns">
+   
+
+  </div>
+</div>
