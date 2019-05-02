@@ -1,13 +1,35 @@
-<div class="row">
-  <div class="col s8">
-    <!-- primary partial gets displayed here in main div -->
-    <%= render partial: "customer_details" %>
-    <%= render partial: "partials/object_options", locals: {model_name: "customer", object: @customer}  %>
+<% if logged_in? && ( current_user.role?(:admin)) %>
 
-  </div>
-  <div class="col s4">
-    <!-- render the sidebar, if it exists -->
-    <%= render partial: "partials/previous_orders", locals: {previous_orders: @previous_orders}  unless @previous_orders.empty?%>
-  </div>
+	<div class="row">
+	  <div class="col s8">
+	    <!-- primary partial gets displayed here in main div -->
+	    <%= render partial: "customer_details" %>
+	    <%= render partial: "partials/object_options", locals: {model_name: "customer", object: @customer}  %>
 
-</div>
+	  </div>
+	  <div class="col s4">
+	    <!-- render the sidebar, if it exists -->
+	    <%= render partial: "partials/previous_orders", locals: {previous_orders: @previous_orders}  unless @previous_orders.empty?%>
+	  </div>
+
+	</div>
+
+<% else %>
+
+	<div class="row">
+	  <div class="col s8">
+	    <!-- primary partial gets displayed here in main div -->
+	    <%= render partial: "account_details" %>
+	    <br>
+	    <%= render partial: "partials/cust_edit_options", locals: {model_name: "customer", object: @customer}  %>
+
+	  </div>
+	  <div class="col s4">
+	    <!-- render the sidebar, if it exists -->
+	    <%= render partial: "partials/previous_orders", locals: {previous_orders: @previous_orders}  unless @previous_orders.empty?%>
+	  </div>
+
+	</div>
+
+<% end %>
+

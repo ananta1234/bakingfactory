@@ -1,0 +1,17 @@
+
+      <div class="row">
+        <div class="col s8">
+          <!-- primary partial gets displayed here in main div -->
+          <%= render partial: "item_list" %>
+
+        </div>
+        <div class="col s4">
+          <!-- render the sidebar, if it exists -->
+          <br>
+          <br>
+          <br>
+          <br>
+          <%= render partial: "partials/previous_orders", locals: {previous_orders: @previous_orders}  unless @previous_orders.empty?%>
+        </div>
+
+      </div>

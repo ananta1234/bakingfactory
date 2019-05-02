@@ -1,0 +1,18 @@
+<h3>Order</h3>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th width="100">Item</th>
+			<th width="100">Quantity</th>	
+		</tr>
+		</thead>
+	<tbody>
+		<% OrderItem.all.where(order_id: @order.id).each do |oi| %>
+			<tr>
+			    <td><%= link_to oi.item.name, item_path(oi.item) %> </td>
+			    <td><%= oi.quantity %></td>
+			</tr>
+	<% end %>
+	</tbody>
+</table>

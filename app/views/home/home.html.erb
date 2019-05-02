@@ -10,7 +10,7 @@
 
 <% elsif logged_in? && ( current_user.role?(:customer)) %>
 
-	<%= render :partial => 'general_home' %>
+	<%= render :partial => 'cust_dash' %>
 
 <% else %>
 

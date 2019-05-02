@@ -64,6 +64,9 @@ class Ability
     	can :show, Item
     	can :index, Item
     	can :index, Order
+        can :show, User do |u|  
+            u.id == user.id
+        end
 
     elsif user.role? :shipper
 
@@ -73,6 +76,9 @@ class Ability
     	can :show, Address
         can :index, Address
     	can :show, Order
+        can :show, User do |u|  
+            u.id == user.id
+        end
 
     else
     	can :show, Item

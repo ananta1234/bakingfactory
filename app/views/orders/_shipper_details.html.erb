@@ -1,0 +1,18 @@
+<h5>Details</h5>
+
+<p>
+  <b>Date</b>: <%= @order.date.strftime('%B %e, %Y') %>
+</p>
+
+<p>
+  <b>Customer</b>: <%= link_to @order.customer.name, customer_path(@order.customer) %>
+</p>
+
+<p>
+  <b>Recipient</b>: <%= link_to @order.address.recipient, address_path(@order.address) %>
+</p>
+
+<p>
+  <b>Total Cost</b>: <%= number_to_currency @order.grand_total %>
+</p>
+<br>

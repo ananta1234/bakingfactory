@@ -10,7 +10,6 @@
       if user
         session[:user_id] = user.id
         create_cart
-        puts session[:cart]
         redirect_to home_path, notice: "Logged in!"
       else
         flash.now.alert = "Username and/or password is invalid"

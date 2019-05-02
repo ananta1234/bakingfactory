@@ -2,7 +2,7 @@
   <div class="container">
     <ul class="left hide-on-med-and-down">
       <li><%= link_to 'Home', home_path %></li>
-      <li><%= link_to 'Addresses', addresses_path %></li>
+      <li><%= link_to 'My Account', user_path(current_user) %></li>
     </ul>
     <ul class="right">
       <li><%= link_to 'Logout', logout_path %></li>

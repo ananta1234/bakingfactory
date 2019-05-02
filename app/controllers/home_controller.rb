@@ -12,7 +12,30 @@ class HomeController < ApplicationController
     elsif logged_in? && ( current_user.role?(:shipper))
       @unshipped_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(10)
       @shipped_orders = Order.shipped.chronological.paginate(:page => params[:page]).per_page(10)
+    elsif logged_in? && ( current_user.role?(:customer))
+
+      @all_items = Hash.new
+      all_orders = current_user.customer.orders
+
+      all_orders.each do |o|
+
+        all_order_items = OrderItem.all.where(order_id: o.id)
+
+        all_order_items.each do |oi|
+
+            if @all_items.keys.include?(oi.item_id)
+              @all_items[oi.item_id] += 1
+            else
+              @all_items[oi.item_id] = 1
+            end
+
+        end
+      end
+      @first = current_user.customer.proper_name
+      @previous_orders = current_user.customer.orders.chronological.to_a
+
     else
+
 
     end
   end

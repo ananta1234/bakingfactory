@@ -1,0 +1,67 @@
+<% if @all_items.keys.empty? %>
+
+  <h4>No items at this time.</h4>
+
+<% else %>
+<br>
+<h4>Welcome <%= @first %>!</h4>
+    <div id="tabbed">
+      <tabs>
+
+        <tab name="Recently Ordered" v-bind:selected="true">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th width="150">Name</th>
+                  <th width="75">Price</th>
+                  <th width="100">Weight</th>
+                  <th width="100">Options</th>                
+                </tr>
+              </thead>
+              <tbody>
+                <% @all_items.keys.each do |id| %>
+                  <tr>
+                    <td><%= Item.where(id: id).first.name %></td>
+                    <td><%= number_to_currency Item.where(id: id).first.current_price %></td>
+                    <td><%= Item.where(id: id).first.weight%></td>
+                    <td><%= Item.where(id: id).first.active ? "Yes" : "No"%></td>
+                    <td><%= link_to "Add to Cart", add_to_cart_path(Item.where(id: id).first.id)%></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+
+
+        </tab>
+
+        <tab name="Try Something New"> 
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th width="150">Name</th>
+                  <th width="75">Price</th>
+                  <th width="100">Weight</th>
+                  <th width="100">Options</th>                
+                </tr>
+              </thead>
+              <tbody>
+                <% Item.all.active.each do |item| %>
+                  <tr>
+                    <td><%= item.name %></td>
+                    <td><%= number_to_currency item.current_price %></td>
+                    <td><%= item.weight%></td>
+                    <td><%= item.active ? "Yes" : "No"%></td>
+                    <td><%= link_to "Add to Cart", add_to_cart_path(item.id)%></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+
+        </tab>
+
+      </tabs>
+    </div>
+
+<% end %>
+
+<p>&nbsp;</p>
