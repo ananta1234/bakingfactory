@@ -50,8 +50,6 @@
   def create
     @item = Item.new(item_params)
     if @item.save
-      image_tag @user.photo.url(:large), :class => "style_image"
-      #@item.photo ||= "/assets/images/pie.jpg"
       redirect_to @item, notice: "#{@item.name} was added to the system."
     else
       render action: 'new'

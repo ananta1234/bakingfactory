@@ -5,6 +5,13 @@ class HomeController < ApplicationController
   def home
     if logged_in? && ( current_user.role?(:admin))
 
+      #Find all the total sales amounts for every month of this year
+      @orders_from_this_year = Order.all.select{|o| o.date >= 2019-01-01}
+
+
+
+      
+
     elsif logged_in? && ( current_user.role?(:baker))
       @bread_baking_list = create_baking_list_for("bread")
       @muffin_baking_list = create_baking_list_for("muffin")
