@@ -1,0 +1,23 @@
+<%= simple_form_for @item_price, local: true, multipart: true, url: create_price_path, html: { class: 'form-horizontal' } do |f| %>
+  
+<div class="row">
+  <div class="col s9">
+    <div class="card">    
+      <div class="card-content">
+        <span class="card-title">Change Item Price</span>
+          <div class="row">
+            <div class="form-inputs">
+              <%= f.input :price, input_html: {class: "avg"} %>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="row">
+        <div class="form-actions col s9">
+          <%= f.button :submit %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= link_to 'Back', :back %>

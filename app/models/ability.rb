@@ -71,8 +71,9 @@ class Ability
     elsif user.role? :shipper
 
     	can :show, Item
+        can :check_shipping, Order
     	can :index, Item
-    	can :index, Order
+    	can :index, Order       
     	can :show, Address
         can :index, Address
     	can :show, Order
@@ -84,7 +85,7 @@ class Ability
     	can :show, Item
     	can :index, Item
     	can :create, Customer
-
+        can :create, User
     end
   end
 end

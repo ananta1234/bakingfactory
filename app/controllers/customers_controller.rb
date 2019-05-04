@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
   include ActionView::Helpers::NumberHelper
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-  before_action :check_login
+  before_action :check_login, except: [:new, :create]
 
   authorize_resource
 
@@ -17,6 +17,7 @@ class CustomersController < ApplicationController
   def new
     # authorize! :new, @customer
     @customer = Customer.new
+    @customer.build_user
   end
 
   def edit
@@ -25,18 +26,38 @@ class CustomersController < ApplicationController
   end
 
   def create
-    # authorize! :new, @customer
+    byebug
     @customer = Customer.new(customer_params)
-    if @customer.save
-      redirect_to @customer, notice: "#{@customer.proper_name} was added to the system."
-    else
-      render action: 'new'
-    end
+    # @user = User.new(user_params)
+    # @user.role = "customer"
+    @customer.user.role = "customer"
+    @customer.user.active = true
+    # if !@user.save
+    #   @customer.valid?
+    #   render action: 'new'
+    # else
+    #   @customer.user_id = @user.id
+
+      if @customer.save
+
+        redirect_to home_path, notice: "#{@customer.proper_name} was added to the system"
+        # flash[:notice] = "Successfully created #{@customer.proper_name}."
+
+        #   if ( current_user.role?(:customer))
+        #             redirect_to home_path() 
+        #   else
+        #     redirect_to customer_path()
+        #   end
+      else
+        render action: 'new'
+      end      
+
   end
 
   def update
+    byebug
     # authorize! :update, @customer
-    if @customer.update(customer_params)
+    if @customer.update_attributes(customer_params)
       redirect_to @customer, notice: "#{@customer.proper_name} was revised in the system."
     else
       render action: 'edit'
@@ -50,7 +71,7 @@ class CustomersController < ApplicationController
   end
 
   def customer_params
-    params.require(:customer).permit(:first_name, :last_name, :email, :phone, :active)
+    params.require(:customer).permit(:first_name, :last_name, :email, :phone, :active, :id, user_attributes: [:id, :username, :password, :password_confirmation])
   end
 
 end

@@ -4,7 +4,8 @@
 	<thead>
 		<tr>
 			<th width="100">Item</th>
-			<th width="100">Quantity</th>	
+			<th width="100">Quantity</th>
+			<th width="100">Options</th>
 		</tr>
 		</thead>
 	<tbody>
@@ -12,6 +13,11 @@
 			<tr>
 			    <td><%= link_to oi.item.name, item_path(oi.item) %> </td>
 			    <td><%= oi.quantity %></td>
+			    <% if oi.shipped_on.nil? %>
+			    <td><%= link_to "Unshipped", check_shipping_path(oi.id)%></td>
+			    <% else %>
+			    <td><%= link_to "Shipped", check_shipping_path(oi.id)%></td>
+			    <% end -%>
 			</tr>
 	<% end %>
 	</tbody>

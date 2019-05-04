@@ -1,13 +1,13 @@
 <h3>Account Details</h3>
 
 <p>
-  <b>Username</b>: <%= current_user.username %>
+  <b>Username</b>: <%= @user.username %>
 </p>
 
 <p>
-  <b>Role</b>: <%= current_user.role %>
+  <b>Role</b>: <%= @user.role %>
 </p>
 
 <p>
-  <b>Active</b>: <%= current_users.active ? 'Yes' : 'No' %>
+  <b>Active</b>: <%= @user.active ? 'Yes' : 'No' %>
 </p>

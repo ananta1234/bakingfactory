@@ -1,6 +1,9 @@
-
-  <%= address.street_1 %><br />
-  <% unless address.street_2.blank? %>
-    <%= address.street_2 %><br />
+  <% if address.nil? == false %>
+	  <%= address.street_1 %><br />
+	  <% unless address.street_2.blank? %>
+	    <%= address.street_2 %><br />
+	  <% end %>
+	  <%= address.city %>, <%= address.state %> <%= address.zip %>
+  <% else %>
+  There is no billing address for this account. Please add one in.
   <% end %>
-  <%= address.city %>, <%= address.state %> <%= address.zip %>

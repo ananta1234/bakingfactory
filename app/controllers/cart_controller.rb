@@ -5,6 +5,8 @@ class CartController < ApplicationController
 	def show
 		@cart_item_list = get_list_of_items_in_cart
 		@cost = calculate_cart_items_cost
+
+		@order = Order.new
 	end
 
 	def add_to_cart
@@ -23,24 +25,52 @@ class CartController < ApplicationController
 	end
 
 	def checkout
+		card_number = params["order"][:credit_card_number].to_s
+		year = params["order"][:expiration_year].to_i
+		month = params["order"][:expiration_month].to_i
+
 		@current_customer = current_user.customer
 		@session_address = @current_customer.addresses.billing.first
 		@proper_date = Date.current
 		@total_cost = calculate_cart_items_cost
 		@new_order = Order.create(customer: @current_customer, address: @session_address, date: @proper_date, grand_total: @total_cost)
 
-    	@new_order.credit_card_number = "4123456789012"
-    	@new_order.expiration_year = 2019
-    	@new_order.expiration_month = 12
+    	@new_order.credit_card_number = card_number
+    	@new_order.expiration_year = year
+    	@new_order.expiration_month = month
 
-		@new_order.pay
-		@new_order.reload		
-		save_each_item_in_cart(@new_order)
-		@new_order.save!
-		clear_cart
-		redirect_to orders_path
+	    if @new_order.save
+			@new_order.pay
+			@new_order.reload		
+			save_each_item_in_cart(@new_order)
+			clear_cart
+			redirect_to orders_path
+	    else
+	      	render action: 'new'
+	    end
+
 	end
 
+	def add_payment
 
+		@curr_order = Order.find(params[:id]) 
+
+    	# @curr_order.credit_card_number = "4123456789012"
+    	# @curr_order.expiration_year = 2019
+    	# @curr_order.expiration_month = 12
+
+
+
+		# @curr_order.pay
+		# @curr_order.reload		
+		# save_each_item_in_cart(@curr_order)
+		# @curr_order.save!
+		# clear_cart
+		# redirect_to orders_path
+	end
+
+  def order_params
+    params.require(:order).permit(:address_id, :customer_id, :grand_total)
+  end
 
 end

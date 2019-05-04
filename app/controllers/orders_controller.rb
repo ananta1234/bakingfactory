@@ -41,6 +41,22 @@ class OrdersController < ApplicationController
       render action: 'new'
     end
   end
+
+  def check_shipping
+    @order_item_check = OrderItem.all.where(id: params[:id]).first
+    puts ("#{@order_item_check.shipped_on}")      
+
+    if @order_item_check.shipped_on.nil?
+      @order_item_check.shipped_on = Date.today
+      @order_item_check.save!
+      puts ("safsadfasdfasdfsaf")      
+    else 
+      @order_item_check.shipped_on = nil
+      @order_item_check.save!
+      puts ("1234123412341")      
+    end
+    redirect_to order_path(Order.all.where(id: @order_item_check.order_id).first)
+  end
   
 
   private

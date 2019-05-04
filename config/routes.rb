@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   get 'user/edit' => 'users#edit', :as => :edit_current_user
-  get 'signup' => 'users#new', :as => :signup
+  get 'signup' => 'customers#new', :as => :signup
   get 'login' => 'sessions#new', :as => :login
   get 'logout' => 'sessions#destroy', :as => :logout
 
@@ -28,9 +28,12 @@ Rails.application.routes.draw do
   get 'items/:id/add_to_cart' => 'cart#add_to_cart', :as => :add_to_cart
   get 'items/:id/remove_from_cart' => 'cart#remove_from_cart', :as => :remove_from_cart
   get 'clear_the_cart' => 'cart#clear_the_cart', :as => :clear_the_cart
-  get 'checkout' => 'cart#checkout', :as => :checkout
+  post 'checkout' => 'cart#checkout', :as => :checkout
+  get 'orders/:id/add_payment' => 'cart#add_payment', :as => :add_payment
 
   #post 'cart' => 'cart#new', :as => :new_cart
+
+  get 'orders/:id/check_shipping' => 'orders#check_shipping', :as => :check_shipping
 
   # Set the root url
   root :to => 'home#home'

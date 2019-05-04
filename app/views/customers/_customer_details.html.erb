@@ -1,7 +1,7 @@
 <h3><%= @customer.proper_name %></h3>
 
 <p>
-  <b>Username</b>: <%= current_user.username %>
+  <b>Username</b>: <%= @customer.user.username %>
 </p>
 
 <p>
@@ -12,9 +12,13 @@
   <b>Email</b>: <%= mail_to @customer.email, @customer.email, encode: "javascript" %>
 </p>
 
+<% if @customer.addresses.billing.first.nil?  == false %>
+
 <p>
   <b>Billing Address</b>:<br> <%= render :partial => "partials/address_info", locals: {address: @customer.addresses.billing.first} %>
 </p>
+
+<% end -%>
 
 <p>
   <b>Active</b>: <%= @customer.active ? 'Yes' : 'No' %>
