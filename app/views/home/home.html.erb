@@ -8,6 +8,10 @@
 
     <%= render :partial => "shipping_list" %>
 
+<% elsif logged_in? && ( current_user.role?(:admin)) %>
+
+    <%= render :partial => "admin" %>
+
 <% elsif logged_in? && ( current_user.role?(:customer)) %>
 
 	<%= render :partial => 'cust_dash' %>

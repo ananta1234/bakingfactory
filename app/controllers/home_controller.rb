@@ -8,9 +8,21 @@ class HomeController < ApplicationController
       #Find all the total sales amounts for every month of this year
       @orders_from_this_year = Order.all.select{|o| o.date >= 2019-01-01}
 
+      @data = []
+
+      @months = []
+
+      @end = Date.current.month
+
+      (1..@end).each do |month| 
+
+        @sales_from_month = @orders_from_this_year.select {|o| o.date.month == month}.sum(&:grand_total)
+        @data << @sales_from_month
+        @months << Date::MONTHNAMES[month]
+        
+      end
 
 
-      
 
     elsif logged_in? && ( current_user.role?(:baker))
       @bread_baking_list = create_baking_list_for("bread")
