@@ -1,28 +1,53 @@
-<div class="row">
-	<div class="small-7 columns">
-		<h2>Contact Bread Express</h2>
-		<p class="supertiny">&nbsp;</p>
-		<table cellpadding="3">
-			<tr>
-				<td>Webmaster:&nbsp;&nbsp;&nbsp;</td>
-				<td>Professor Larry Heimann</td>
-			</tr>
-			<tr>
-				<td>Email:</td>
-				<td>
-				<%= mail_to("profh@cmu.edu", "Klingon Code Warrior*", :encode => "javascript") %> 
-				</td>
-			</tr>
-			<tr>
-				<td>Phone:</td>
-				<td>412-268-8211</td>
-			</tr>
-		</table>
+<div class="row">    
+  <div class="col s9">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title"><em>Contact Us</em></span>
 
-		<p class="note"><br>*I am a professor of information systems at Carnegie Mellon University and this nickname was a little joke between myself and my students that I adopted as my signature for all my programming work.  
-			<br><br><em>... in truth I am only half-Klingon.</em></p>
-			
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-	</div>
+        <div id="main_content">
+          <p>How to Contact The Bakery</p>
+        </div>
+        <p>&nbsp;</p>
+          <div class="row">    
+            <div class="col s9">
+              <div class="card">
+                <div class="card-content">
+                  <%= image_tag 'me.jpg', class: 'img_left' %>
+                  <span class="card-title"><em>Get to Know Us</em></span>
+                  <p>Our bakery is as real as it gets.  Just log in make an order and leave your credit card information.  If you have any issues with our service, be sure to email our quality manager, whose contact information is provided below.  
+                  </p>
+                  <p>&nbsp;</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">Contact</span>
+                  <table cellpadding="3">
+                    <tr>
+                      <td>Quality Manager:&nbsp;&nbsp;&nbsp;</td>
+                      <td>Bharath Prabhu</td>
+                    </tr>
+                    <tr>
+                      <td>Email:</td>
+                      <td>
+                      <%= mail_to("prabhuji@cmu.edu", "Quality Assurance", encode: "javascript") %> 
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Phone:</td>
+                      <td>656-565-6565</td>
+                    </tr>
+                  </table>
+                  <p >*I live to make others happy. Any and all issues with orders are completely my fault and I take full ownership even if they never arrive.  Feel free to email me or request a venmo refund.  &nbsp;&nbsp;&nbsp; 
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        
+      </div>
+    </div>
+  </div>
 </div>

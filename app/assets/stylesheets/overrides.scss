@@ -1,3 +1,28 @@
+
+
+
+
+.img_left {
+  float: left;
+  padding-right: 10px;
+  height: 150px;
+  width: 160px;
+}
+
+.img_right {
+  float: right;
+  padding-left: 10px;
+}
+
+.carousel {
+  height: 250px;
+}
+
+.card {
+  width: 500px;
+  height: 400px;
+}
+
 html {
   // Preloaded with four fonts; uncomment the one you prefer
   font-family: 'Nunito', sans-serif;
@@ -10,6 +35,10 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+}
+
+.visit {
+  text-align: center;
 }
 
 main {

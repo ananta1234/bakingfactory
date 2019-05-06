@@ -13,7 +13,9 @@
   <body>
     <header>
     <!-- Partials for the topbar and navigation -->
-    <%= render :partial => "partials/topbar" %>
+    <% if logged_in? %>
+    <%= render :partial => "partials/topbar" %> 
+    <% end %>
 
     <% if logged_in? && ( current_user.role?(:admin)) %>
       <%= render :partial => "partials/nav" %>

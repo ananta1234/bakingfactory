@@ -1,5 +1,9 @@
 <nav id="nav">
   <div class="container">
+    <ul class="left hide-on-med-and-down">
+      <li><%= link_to 'Home', home_path %></li>
+      <li><%= link_to 'Menu', items_path %></li>
+    </ul>
     <ul class="right">
         <li><%= link_to 'Sign Up', new_customer_path() %></li>
         <li><%= link_to 'Login', login_path %></li>

@@ -8,7 +8,7 @@
 <br>
 	<%= render partial: "partials/item_options", locals: {model_name: "item", object: @item}  %>
 
-<% elsif logged_in? && ( current_user.role?(:shipper)) %>
+<% elsif logged_in? && ( current_user.role?(:shipper) || current_user.role?(:baker) ) %>
 
     <%= render partial: "partials/structure1", locals: {model_name: "item", 
                                                          primary: "item_details", 
@@ -17,14 +17,23 @@
   <!-- Add buttons to list all, edit project or destroy object -->
   <%= render partial: "partials/cust_object_options", locals: {model_name: "item", object: @item}  %>
 
-<% else %>
+<% elsif logged_in? && ( current_user.role?(:customer)) %>
 
   	<%= render partial: "partials/structure1", locals: {model_name: "item", 
                                                          primary: "item_details", 
                                                          secondary: nil,
                                                          sidebar: "similar_items"} %>
 	<!-- Add buttons to list all, edit project or destroy object -->
-	<%= render partial: "partials/cust_object_options", locals: {model_name: "item", object: @item}  %>
+	<%= render partial: "partials/item_cust", locals: {model_name: "item", object: @item}  %>
+
+<% else %>
+
+  <%= render partial: "partials/structure1", locals: {model_name: "item", 
+                                                         primary: "item_details", 
+                                                         secondary: nil,
+                                                         sidebar: "similar_no_cart"} %>
+  <!-- Add buttons to list all, edit project or destroy object -->
+  <%= render partial: "partials/cust_object_options", locals: {model_name: "item", object: @item}  %>
 
 <% end %>
 

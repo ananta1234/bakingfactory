@@ -1,22 +1,55 @@
 <% if logged_in? && ( current_user.role?(:admin)) %>
-
-<%= render partial: "partials/index_structure", locals: {model_name: "item", 
+      <%= render partial: "partials/index_structure", locals: {model_name: "item", 
                                                          primary: "item_list_admin", 
                                                          secondary: nil,
-                                                         sidebar: nil} %>
+                                                         sidebar: nil} %>    
+<% elsif logged_in? && current_user.role?(:baker) %>
+
+    <div class="row">
+      <div class="small-8 columns">
+        <!-- primary partial gets displayed here in main div -->
+        <%= render partial: "item_list" %>
+        
+      </div>
+      <div class="small-4 columns">
+        <!-- render the sidebar, if it exists -->
+      </div>
+    </div>
+
+<% elsif logged_in? && current_user.role?(:shipper) %>
+
+
+      <div class="row">
+        <div class="small-8 columns">
+          <!-- primary partial gets displayed here in main div -->
+          <%= render partial: "item_list" %>
+          
+        </div>
+        <div class="small-4 columns">
+          <!-- render the sidebar, if it exists -->
+        </div>
+      </div>
+
+<% elsif logged_in? && current_user.role?(:customer) %>
+
+    <div class="row">
+      <div class="small-8 columns">
+        <!-- primary partial gets displayed here in main div -->
+        <%= render partial: "item_list" %>
+        
+      </div>
+      <div class="small-4 columns">
+        <!-- render the sidebar, if it exists -->
+      </div>
+    </div>
+
 <% else %>
 
+    <%= render partial: "partials/index_structure", locals: {model_name: "item", 
+                                                         primary: "item_list_guest", 
+                                                         secondary: nil,
+                                                         sidebar: nil} %>
 
 
-<div class="row">
-  <div class="small-8 columns">
-    <!-- primary partial gets displayed here in main div -->
-    <%= render partial: "item_list" %>
-    
-  </div>
-  <div class="small-4 columns">
-    <!-- render the sidebar, if it exists -->
-  </div>
-</div>
 
 <% end %>
