@@ -1,0 +1,13 @@
+<% if logged_in? && ( current_user.role?(:admin)) %>
+
+<%= render partial: "partials/form_structure", locals: {object: @user, 
+                                                        type_of_form: "Edit User",
+                                                        fields: "admin_fields"} %>
+
+<% else %>
+
+<%= render partial: "partials/form_structure", locals: {object: @user, 
+                                                        type_of_form: "Edit User",
+                                                        fields: "fields"} %>
+
+<% end %>

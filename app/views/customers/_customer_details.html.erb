@@ -23,3 +23,7 @@
 <p>
   <b>Active</b>: <%= @customer.active ? 'Yes' : 'No' %>
 </p>
+
+<p>
+  <b>Been a Baking Factory customer since: </b>: <%= @customer.created_at.strftime('%m/%d/%y') %>
+</p>

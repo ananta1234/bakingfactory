@@ -15,3 +15,7 @@
 <p>
   <b>Billing Address</b>:<br> <%= render :partial => "partials/address_info", locals: {address: @customer.addresses.billing.first} %>
 </p>
+
+<p>
+  <b>Been a Baking Factory customer since: </b>: <%= @customer.created_at.strftime('%m/%d/%y') %>
+</p>

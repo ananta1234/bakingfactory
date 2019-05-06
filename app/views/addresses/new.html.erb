@@ -1,3 +1,12 @@
-<%= render partial: "partials/form_structure", locals: {object: @address, 
+<% if logged_in? && ( current_user.role?(:customer)) %>
+
+<%= render partial: "partials/address_form", locals: {object: @address, 
+                                                        type_of_form: "New Address",
+                                                        fields: "cust_fields"} %>
+<% else %>
+
+<%= render partial: "partials/address_form", locals: {object: @address, 
                                                         type_of_form: "New Address",
                                                         fields: "fields"} %>
+
+<% end -%>

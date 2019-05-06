@@ -10,17 +10,19 @@
       <th width="225">Recipient</th>
       <th width="350">Address</th>
       <th width="75">Billing?</th>
+      <th width="75">Active?</th>
       <th width="75">&nbsp;</th>
     </tr>
   </thead>
   <tbody>
     <% @customer_addresses.each do |address| %>
       <tr>
-        <td><%= address.recipient %></td>
+        <td><%= link_to address.recipient, address_path(address) %></td>
         <td>
           <%= render :partial => "partials/address_info", locals: {address: address} %>
         </td>
-        <td align="center"><%= address.is_billing ? "Yes" : "No" %></td>      
+        <td align="center"><%= address.is_billing ? "Yes" : "No" %></td>   
+        <td align="center"><%= address.active ? "Yes" : "No" %></td>         
         <td>
           <%= link_to(edit_address_path(address), class: 'button tiny radius warning') do %>
             &nbsp;Edit&nbsp;

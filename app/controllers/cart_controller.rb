@@ -11,17 +11,17 @@ class CartController < ApplicationController
 
 	def add_to_cart
 		add_item_to_cart(params[:id])
-		redirect_to show_cart_path()
+		redirect_to items_url, notice: "#{Item.find(params[:id]).name} was added to the cart."
 	end
 
 	def remove_from_cart
 		remove_item_from_cart(params[:id])
-		redirect_to show_cart_path()
+		redirect_to show_cart_path(), notice: "#{Item.find(params[:id]).name} has been removed from the cart."
 	end
 
 	def clear_the_cart
 		clear_cart
-		redirect_to show_cart_path
+		redirect_to show_cart_path, notice: "Your cart has been cleared."
 	end
 
 	def checkout
@@ -44,9 +44,9 @@ class CartController < ApplicationController
 			@new_order.reload		
 			save_each_item_in_cart(@new_order)
 			clear_cart
-			redirect_to orders_path
+			redirect_to orders_path, notice: "Congratulations! We got your order and it is on it's way!"
 	    else
-	      	render action: 'new'
+	    	redirect_to show_cart_path, notice: "It seems there might be missing or invalid information. Please check your information and try again."
 	    end
 
 	end

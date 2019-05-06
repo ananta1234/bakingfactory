@@ -1,4 +1,4 @@
-<% if @users.empty? %>
+<% if @employees.empty? %>
   <h4>There are no users currently in the system.</h4>
 <% else %>
   <h4>Users</h4>
@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @users.each do |user| %>
+      <% @employees.each do |user| %>
         <tr>
           <td><%= link_to user.username, user_path(user) %></td>
           <td><%= user.role %></td>

@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
       @shipped_orders = Order.shipped.chronological.paginate(:page => params[:page]).per_page(10)
     else
       @current_customer = current_user.customer
-      @customer_orders = @current_customer.orders
+      @customer_orders = @current_customer.orders.chronological
     end
   end
 

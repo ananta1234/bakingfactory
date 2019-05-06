@@ -17,9 +17,7 @@
 
 </div>
 
-
-
-<% else %>
+<% elsif logged_in? && ( current_user.role?(:customer)) %>
 
 	<div class="row">
 	  <div class="small-7 columns">
@@ -32,6 +30,20 @@
 
 	<!-- Add buttons to list all, edit project or destroy object -->
 	<%= render partial: "partials/object_options", locals: {model_name: "address", object: @address}  %>
+
+<% else %>
+
+	<div class="row">
+	  <div class="small-7 columns">
+	    <%= render :partial => "admin_address_details" %>
+	  </div>
+	  <div class="small-5 columns">
+	    &nbsp;
+	  </div>
+	</div>
+
+	<!-- Add buttons to list all, edit project or destroy object -->
+	<%= render partial: "partials/address_options", locals: {model_name: "address", object: @address}  %>
 
 <% end %>
 

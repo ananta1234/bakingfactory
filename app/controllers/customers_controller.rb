@@ -26,7 +26,6 @@ class CustomersController < ApplicationController
   end
 
   def create
-    byebug
     @customer = Customer.new(customer_params)
     # @user = User.new(user_params)
     # @user.role = "customer"
@@ -55,7 +54,6 @@ class CustomersController < ApplicationController
   end
 
   def update
-    byebug
     # authorize! :update, @customer
     if @customer.update_attributes(customer_params)
       redirect_to @customer, notice: "#{@customer.proper_name} was revised in the system."

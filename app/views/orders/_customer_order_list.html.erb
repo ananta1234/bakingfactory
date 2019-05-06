@@ -5,12 +5,15 @@
     <p><em>There are no orders placed at this time. Go get some baked goods!</em></p>
   <% else %>
 
+
+
   <table class="table table-striped">
     <thead>
       <tr>
         <th width="50">Date</th>
-        <th width="100">Address</th>
         <th width="100">Recipient</th>
+        <th width="100">Items</th>
+        <th width="100">Address</th>
         <th width="100">Cost</th>
       </tr>
     </thead>
@@ -18,10 +21,15 @@
       <% @customer_orders.each do |order| %>
         <tr>
           <td><%= link_to order.date.strftime('%m/%d/%y'), order_path(order) %></td>
+          <td><%= link_to order.address.recipient, address_path(order.address) %></td>
+          <% @allitems = "" 
+              OrderItem.all.where(order_id: order.id).each do |oi|
+                @allitems = @allitems + oi.item.name + ", "
+              end %>
+          <td><%= @allitems[0,@allitems.size - 2] %></td>
           <td>
           	<%= link_to (render :partial => "partials/address_info", locals: {address: order.address}),  address_path(order.address)%>
           </td>
-          <td><%= link_to order.address.recipient, address_path(order.address) %></td>
           <td><%= number_to_currency order.grand_total %></td>
         </tr>
       <% end %>

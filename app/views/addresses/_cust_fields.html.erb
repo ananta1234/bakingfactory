@@ -1,0 +1,9 @@
+
+    <%= f.input :recipient, label_html: {class: "avg active"} %><br><br>
+    <%= f.input :street_1, label_html: {class: "avg active"} %><br><br>
+    <%= f.input :street_2, input_html: {class: "avg"}, label_html: {class: "active"} %>
+    <%= f.input :city, input_html: {class: "avg"}, label_html: {class: "active"} %>
+    <%= f.input :state, collection: Address::STATES_LIST, include_blank: true, input_html: {class: "avg"} %>
+    <%= f.input :zip, input_html: {class: "avg"}, label_html: {class: "active"} %>
+    <%= f.input :is_billing, label: 'Billing? ' %>
+    <%= f.input :active %>

@@ -1,3 +1,4 @@
 <%= f.input :username, input_html: {class: "avg"}, label_html: {class: "active"} %>
+<%= f.input :role, collection: User::ROLES, include_blank: true, input_html: {class: "avg"} %>
 <%= f.input :password, input_html: {class: "avg"}, label_html: {class: "active"} %>
 <%= f.input :password_confirmation, input_html: {class: "avg"}, label_html: {class: "active"} %>

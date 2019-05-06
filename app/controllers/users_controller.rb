@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all.alphabetical.paginate(page: params[:page]).per_page(15)
+    @employees = User.employees.alphabetical.paginate(page: params[:page]).per_page(15)
   end
 
   def new
@@ -13,12 +14,10 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user.role = "admin" if current_user.role?(:admin)
   end
 
   def create
     @user = User.new(user_params)
-    @user.role = "admin" if current_user.role?(:admin)
     if @user.save
       flash[:notice] = "Successfully added #{@user.username} as a user."
     redirect_to users_url

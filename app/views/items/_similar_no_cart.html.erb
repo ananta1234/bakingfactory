@@ -6,13 +6,13 @@
       <table class="striped highlight">
         <thead>
           <th>Name</th>
-          <th>Options</th>
+          <th>Weight</th>
         </thead>
         <% @similar_items  = @similar_items - [@item]%>
         <% for item in @similar_items %>
           <tr>
             <td><%= link_to item.name, item_path(item) %></td>
-            <td><%= link_to "Add to Cart", add_to_cart_path(item.id) %></td>
+            <td><%= item.weight %> lbs</td>
           </tr>
         <% end %>
       </table>

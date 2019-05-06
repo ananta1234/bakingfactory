@@ -5,11 +5,7 @@
 <% end %>
 
 <p>
-  <b>Price</b>: <%= number_to_currency @item.current_price %>
-</p>
-
-<p>
-  <b>Units Per Item</b>: <%= @item.units_per_item %>
+  <b>Price</b>: <%= number_to_currency @item.current_price %> (<%= @item.units_per_item %> unit)
 </p>
 
 <p>
@@ -22,4 +18,8 @@
 
 <p>
   <em>An item at the Baking Factory since <%= @item.created_at.year %>.</em>
+</p>
+
+<p>
+  <b>Description</b>: <%= @item.description %>
 </p>

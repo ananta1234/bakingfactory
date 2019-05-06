@@ -12,6 +12,7 @@
 			        <th width="100">Date</th>
 			        <th width="225">Customer</th>
 			        <th width="225">Recipient</th>
+			        <th width="225">Items</th>
 			        <th width="225">Address</th>			        
 			      </tr>
 			    </thead>
@@ -19,8 +20,13 @@
 			      <% @unshipped_orders.each do |order| %>
 			        <tr>
 			          <td><%= link_to order.date.strftime('%m/%d/%y'), order_path(order) %></td>
-			          <td><%= link_to order.customer.name, customer_path(order.customer) %></td>
+			          <td><%= order.customer.name %></td>
 			          <td><%= link_to order.address.recipient, address_path(order.address) %></td>
+					  <% @allitems = "" 
+              			OrderItem.all.where(order_id: order.id).each do |oi|
+                		@allitems = @allitems + oi.item.name + ", "
+              		  end %>
+          			  <td><%= @allitems[0,@allitems.size - 2] %></td>
 			          <td><%= render :partial => "partials/address_info", locals: {address: order.address} %></td>
 			        </tr>
 			      <% end %>
@@ -39,16 +45,22 @@
 			        <th width="100">Date</th>
 			        <th width="225">Customer</th>
 			        <th width="225">Recipient</th>
-			        <th width="100">Cost</th>
+			        <th width="225">Items</th>
+			        <th width="225">Address</th>			        
 			      </tr>
 			    </thead>
 			    <tbody>
 			      <% @shipped_orders.each do |order| %>
 			        <tr>
 			          <td><%= link_to order.date.strftime('%m/%d/%y'), order_path(order) %></td>
-			          <td><%= link_to order.customer.name, customer_path(order.customer) %></td>
+			          <td><%= order.customer.name %></td>
 			          <td><%= link_to order.address.recipient, address_path(order.address) %></td>
-			          <td><%= number_to_currency order.grand_total %></td>
+					  <% @allitems = "" 
+              			OrderItem.all.where(order_id: order.id).each do |oi|
+                		oi.item.name + ", "
+              		  end %>
+          			  <td><%= @allitems[0,@allitems.size - 2] %></td>
+			          <td><%= render :partial => "partials/address_info", locals: {address: order.address} %></td>
 			        </tr>
 			      <% end %>
 			    </tbody>
