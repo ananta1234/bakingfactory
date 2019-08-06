@@ -1,7 +1,3 @@
-67-272: Bread Express
----
-This will be the starter code for the course project in 67-272: Application Design and Development.  More notes will follow depending on the phase of the project.
-
 To set this up, clone this repository, run the `bundle install` command to ensure you have all the needed gems and then create the database with `rake db:migrate`.  If you want to populate the system with fictitious, but somewhat realistic data, you can run the `rake db:populate` command.  The populate script will create:
 - 120 customers
 - over 600 orders
